@@ -3,47 +3,47 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edd.listas;
+package edd.listasdobles;
 
 /**
  *
  * @author Salinas
  */
-public class ListaDoble
+public class ListaDobleArbol
 {
 
-    AlumnoLD mInicio, mFin;
+    AlumnoArbol mInicio, mFin;
 
     public boolean vacio()
     {
         return mFin == null && mInicio == null;
     }
 
-    public void insertar(AlumnoLD mObjALD)
+    public void insertar(AlumnoArbol mObjALD)
     {
         if (!vacio())
         {
             if (mObjALD.getmNombre().compareTo(mFin.getmNombre()) >= 0)
             {
-                mObjALD.setmAntD(mFin);
-                mFin.setmSigD(mObjALD);
+                mObjALD.setmAntLA(mFin);
+                mFin.setmSigLA(mObjALD);
                 mFin = mObjALD;
             } else if (mObjALD.getmNombre().compareTo(mInicio.getmNombre()) <= 0)
             {
-                mObjALD.setmSig(mInicio);
-                mInicio.setmAntD(mObjALD);
+                mObjALD.setmSigLA(mInicio);
+                mInicio.setmAntLA(mObjALD);
                 mInicio = mObjALD;
             } else
             {
-                AlumnoLD mAux = mInicio;
-                while (mObjALD.getmNombre().compareTo(mAux.mNombre) >= 0)
+                AlumnoArbol mAux = mInicio;
+                while (mObjALD.getmNombre().compareTo(mAux.getmNombre()) >= 0)
                 {
-                    mAux = mAux.getmSigD();
+                    mAux = mAux.getmSigLA();
                 }
-                mObjALD.setmAntD(mAux.getmAntD());
-                mObjALD.setmSig(mAux);
-                mAux.setmAntD(mObjALD);
-                mObjALD.getmAntD().setmSig(mObjALD);
+                mObjALD.setmAntLA(mAux.getmAntLA());
+                mObjALD.setmSigLA(mAux);
+                mAux.setmAntLA(mObjALD);
+                mObjALD.getmAntLA().setmSigLA(mObjALD);
             }
 
         } else
@@ -53,45 +53,45 @@ public class ListaDoble
         }
     }
 
-    public AlumnoLD eliminar(String nombre)
+    public AlumnoArbol eliminar(String nombre)
     {
         boolean bandera = false;
         if (mInicio == mFin)
         { //si solo hay un elemento en la lista
-            AlumnoLD mAux = mInicio;
+            AlumnoArbol mAux = mInicio;
             mInicio = mFin = null;
             return mAux;
         }
         if (mInicio.getmNombre().equals(nombre))
         { // si el elemento a eliminar es el primero
-            AlumnoLD a = mInicio;
-            mInicio.getmSigD().setmAntD(null);
-            mInicio = mInicio.getmSigD();
+            AlumnoArbol a = mInicio;
+            mInicio.getmSigLA().setmAntLA(null);
+            mInicio = mInicio.getmSigLA();
             return a;
         }
         if (mFin.getmNombre().equals(nombre))
         { //si el elemento a eliminar es el ultimo
-            AlumnoLD au = mFin;
-            mFin.getmAntD().setmSigD(null);
-            mFin = mFin.getmAntD();
+            AlumnoArbol au = mFin;
+            mFin.getmAntLA().setmSigLA(null);
+            mFin = mFin.getmAntLA();
             return au;
         } else
         { //si esta en medio de la lista
-            AlumnoLD aux = mInicio;
+            AlumnoArbol aux = mInicio;
             while (aux != null && bandera == false)
             {
                 if (aux.getmNombre().equals(nombre))
                 {
-                    AlumnoLD aux1 = aux;
-                    aux.getmAntD().setmSigD(aux.getmSigD());
-                    aux.getmSigD().setmAntD(aux.getmAntD());
-                    aux.setmAntD(null);
-                    aux.setmSigD(null);
+                    AlumnoArbol aux1 = aux;
+                    aux.getmAntLA().setmSigLA(aux.getmSigLA());
+                    aux.getmSigLA().setmAntLA(aux.getmAntLA());
+                    aux.setmAntLA(null);
+                    aux.setmSigLA(null);
                     bandera = true;
                     return aux1;
                 } else
                 {
-                    aux = aux.getmSigD();
+                    aux = aux.getmSigLA();
                 }
             }
         }
@@ -100,28 +100,34 @@ public class ListaDoble
 
     public void desp()
     {
-        AlumnoLD aux = mInicio;
-        AlumnoLD aux1 = mFin;
+        AlumnoArbol aux = mInicio;
+        AlumnoArbol aux1 = mFin;
         System.out.println("\nAscendente");
         while (aux != null)
         {
 
-            System.out.println(" Nombre del alumno: " + aux.getmNombre() + "\n Numero de control: " + aux.getmNoControl() + "\n Promedio: " + aux.getmProm() + "\n");
-            aux = aux.getmSigD();
+            System.out.println("\n Nombre del alumno: " + aux.getmNombre()
+                    + "\n Numero de control: " + aux.getmNoControl()
+                    + "\n Promedio: " + aux.getmProm()
+                    + "\n");
+            aux = aux.getmSigLA();
         }
 
         System.out.println("\nDescendente");
         while (aux1 != null)
         {
-            System.out.println(" Nombre del alumno: " + aux1.getmNombre() + "\n Numero de control: " + aux1.getmNoControl() + "\n Promedio: " + aux1.getmProm() + "\n");
-            aux1 = aux1.getmAntD();
+            System.out.println("\n Nombre del alumno: " + aux1.getmNombre()
+                    + "\n Grupo: "
+                    + "\n Numero de control: " + aux1.getmNoControl()
+                    + "\n Promedio: " + aux1.getmProm());
+            aux1 = aux1.getmAntLA();
         }
 
     }
 
     public void modificar(String mNombre, int mNoControl)
     {
-        AlumnoLD aux = mInicio;
+        AlumnoArbol aux = mInicio;
         boolean bandera = false;
         while (bandera == false && aux != null)
         {
@@ -131,7 +137,7 @@ public class ListaDoble
                 bandera = true;
             } else
             {
-                aux = aux.getmSigD();
+                aux = aux.getmSigLA();
             }
         }
     }
