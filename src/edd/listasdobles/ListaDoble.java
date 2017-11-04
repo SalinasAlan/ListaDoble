@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edd.listas;
+package edd.listasdobles;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ListaDoble
             } else
             {
                 AlumnoLD mAux = mInicio;
-                while (mObjALD.getmNombre().compareTo(mAux.mNombre) >= 0)
+                while (mObjALD.getmNombre().compareTo(mAux.getmNombre()) >= 0)
                 {
                     mAux = mAux.getmSigD();
                 }
