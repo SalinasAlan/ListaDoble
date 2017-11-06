@@ -164,7 +164,7 @@ public class ListaDobleArbol
 
     }
 
-    public void modificar(String mNombre, int mNoControl)
+    public void modificar(String mNombre, int mNoControl, String mGrupo, int mProm)
     {
         AlumnoArbol aux = mInicio;
         boolean bandera = false;
@@ -172,7 +172,10 @@ public class ListaDobleArbol
         {
             if (aux.getmNombre().equals(mNombre))
             {
+                aux.setmNombre(mNombre);
                 aux.setmNoControl(mNoControl);
+                aux.setmGrupo(mGrupo);
+                aux.setmProm(mProm);
                 bandera = true;
             } else
             {
