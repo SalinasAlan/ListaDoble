@@ -12,7 +12,46 @@ package edd.listasdobles;
 public class ListaDobleArbol
 {
 
-    AlumnoArbol mInicio, mFin;
+    private AlumnoArbol mInicio;
+    private AlumnoArbol mFin;
+
+    public ListaDobleArbol()
+    {
+        this.mInicio = null;
+        this.mFin = null;
+    }
+
+    /**
+     * @return the mInicio
+     */
+    public AlumnoArbol getmInicio()
+    {
+        return mInicio;
+    }
+
+    /**
+     * @param mInicio the mInicio to set
+     */
+    public void setmInicio(AlumnoArbol mInicio)
+    {
+        this.mInicio = mInicio;
+    }
+
+    /**
+     * @return the mFin
+     */
+    public AlumnoArbol getmFin()
+    {
+        return mFin;
+    }
+
+    /**
+     * @param mFin the mFin to set
+     */
+    public void setmFin(AlumnoArbol mFin)
+    {
+        this.mFin = mFin;
+    }
 
     public boolean vacio()
     {
