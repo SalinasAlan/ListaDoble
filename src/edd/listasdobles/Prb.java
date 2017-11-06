@@ -47,9 +47,16 @@ public class Prb
                         mLD.desp();
                         break;
                     case 3:
-                        System.out.println("\nIngrese el nombre del alumno a eliminar");
-                        mNombre = mLeer.readLine();
-                        mLD.eliminar(mNombre);
+                        if (mLD.vacio() != true)
+                        {
+                            System.out.println("\nIngrese el nombre del alumno a eliminar");
+                            mNombre = mLeer.readLine();
+                            AlumnoLD mAlumE = mLD.eliminar(mNombre);
+                            System.out.println("\nSe elimino a: "
+                                    + mAlumE.getmNombre()
+                                    + "\nNo. de control: " + mAlumE.getmNoControl()
+                                    + "\nPromedio: " + mAlumE.getmProm());
+                        }
                         break;
                     case 4:
                         System.out.println("\nIngrese el nombre del alumno a modificar");
